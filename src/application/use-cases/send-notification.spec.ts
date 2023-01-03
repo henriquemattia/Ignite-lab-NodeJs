@@ -1,15 +1,18 @@
+import { INMemoryNotificationsRepository } from '../../../test/repositories/in-memory-notifications-repository';
 import { SendNotification } from './send-notification';
 
 describe('Send Notificaiton', () => {
   it('shold be able to send a notification', async () => {
-    const sendNotification = new SendNotification();
+    const notificationsRepository = new INMemoryNotificationsRepository();
+    const sendNotification = new SendNotification(notificationsRepository);
 
     const { notification } = await sendNotification.execute({
       content: 'This is a notification',
       category: 'social',
-      recipientId: 'exemple-0recipient- Id',
+      recipientId: 'exemple-recipient-Id',
     });
 
-    expect(notification).toBeTruthy();
+    expect(notificationsRepository.notifications).toHaveLength(1);
+    expect(notificationsRepository.notifications[0]).toEqual(notification);
   });
 });
