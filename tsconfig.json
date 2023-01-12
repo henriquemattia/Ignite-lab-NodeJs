@@ -13,7 +13,14 @@
     "incremental": true,
     "skipLibCheck": true,
     "strict": true,
-    "strictNullChecks": true,
-    "strictPropertyInitialization": false
+    "strictNullChecks": true, 
+    "strictPropertyInitialization": false,
+    "paths": {
+      "@application/*":["./src/application/*"],
+      "@helpers/*":["./src/helpers/*"],
+      "@infra/*":["./src/infra/*"],
+      "@test/*":["./test/*"],
+    }
+
   }
 }
